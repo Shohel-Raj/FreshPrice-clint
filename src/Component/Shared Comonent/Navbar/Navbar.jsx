@@ -62,7 +62,7 @@ const Navbar = () => {
   const authButton = user ? (
     <div className='flex gap-1 flex-col md:flex-row'>
       <Link
-        to="/login"
+        to="/dashboard"
         className="btn bg-[#FBD536]  hover:bg-white w-full md:w-auto"
         onClick={() => setIsMenuOpen(false)}
       >

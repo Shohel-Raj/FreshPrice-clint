@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.1.5",
+    "@tanstack/react-query": "^5.81.5",
     "axios": "^1.10.0",
     "daisyui": "^5.0.35",
     "firebase": "^11.10.0",
