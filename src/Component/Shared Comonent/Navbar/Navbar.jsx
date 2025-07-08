@@ -63,7 +63,7 @@ const Navbar = () => {
     <div className='flex gap-1 flex-col md:flex-row'>
       <Link
         to="/login"
-        className="btn bg-[#34eb74] text-white hover:bg-[#97f7b9] hover:text-black w-full md:w-auto"
+        className="btn bg-[#FBD536]  hover:bg-white w-full md:w-auto"
         onClick={() => setIsMenuOpen(false)}
       >
         <LayoutDashboard/>
@@ -73,7 +73,7 @@ const Navbar = () => {
 
       <button
         onClick={handleLogout}
-        className="btn bg-[#34eb74] text-white hover:bg-[#97f7b9] hover:text-black w-full md:w-auto"
+        className="btn bg-[#FBD536] text-black hover:bg-white w-full md:w-auto"
       >
         Logout
       </button>
@@ -82,14 +82,14 @@ const Navbar = () => {
     <div className='flex flex-col md:flex-row gap-2'>
       <Link
         to="/login"
-        className="btn bg-[#34eb74] text-white hover:bg-[#97f7b9] hover:text-black w-full md:w-auto"
+        className="btn bg-[#FBD536] text-black hover:bg-white w-full md:w-auto"
         onClick={() => setIsMenuOpen(false)}
       >
         Login
       </Link>
       <Link
         to="/signup"
-        className="btn bg-[#34eb74] text-white hover:bg-[#97f7b9] hover:text-black w-full md:w-auto"
+        className="btn bg-[#FBD536] text-black hover:bg-white w-full md:w-auto"
         onClick={() => setIsMenuOpen(false)}
       >
         Sign-up
