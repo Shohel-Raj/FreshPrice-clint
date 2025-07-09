@@ -16,10 +16,12 @@ import {
 } from 'react-icons/md'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import { imageUpload } from '../../api/utils'
+import useAuth from '../../hooks/useAuth'
 
 const AddAdvertisement = () => {
     const [loading, setLoading] = useState(false)
     const axiosSecure = useAxiosSecure()
+    const { user } = useAuth();
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -49,7 +51,8 @@ const AddAdvertisement = () => {
                 description,
                 image: imageUrl,
                 status: 'pending',
-                createdAt: new Date()
+                createdAt: new Date(),
+                email: user?.email
             }
 
             await axiosSecure.post(`${import.meta.env.VITE_API_URL}/advertisements`, advertisement).then(res => {

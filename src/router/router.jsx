@@ -9,6 +9,9 @@ import RootLayout from "../Layout/RootLayout";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Statistics from "../Pages/Statistics";
 import AddAdvertisement from "../Component/Form/AddAdvertisment";
+import AddProduct from "../Component/Form/AddProduct";
+import MyProduct from "../Pages/MyProduct";
+import MyAdds from "../Pages/MyAdds";
 
 const router = createBrowserRouter([
   {
@@ -55,7 +58,25 @@ const router = createBrowserRouter([
         element:<PrivateRoute>
           <AddAdvertisement/>
         </PrivateRoute>
-      }
+      },
+      {
+        path:'add-product',
+        element:<PrivateRoute>
+          <AddProduct/>
+        </PrivateRoute>
+      },
+      {
+        path:'my-products',
+        element:<PrivateRoute>
+          <MyProduct/>
+        </PrivateRoute>
+      },
+      {
+        path:'my-advertisements',
+        element:<PrivateRoute>
+          <MyAdds/>
+        </PrivateRoute>
+      },
     ],
   },
 ]);
