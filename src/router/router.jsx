@@ -7,6 +7,8 @@ import PrivateRoute from "./PrivateRoute";
 import AllProducts from "../Pages/AllProducts";
 import RootLayout from "../Layout/RootLayout";
 import DashboardLayout from "../Layout/DashboardLayout";
+import Statistics from "../Pages/Statistics";
+import AddAdvertisement from "../Component/Form/AddAdvertisment";
 
 const router = createBrowserRouter([
   {
@@ -39,17 +41,22 @@ const router = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
-    // children: [
-    //   {
-    //     index: true,
-    //     element: (
-    //       <PrivateRoute>
-    //         <Statistics />
-    //       </PrivateRoute>
-    //     ),
-    //   },
-      
-    // ],
+    children: [
+      {
+        index: true,
+        element: (
+          <PrivateRoute>
+            <Statistics />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path:'add-advertisement',
+        element:<PrivateRoute>
+          <AddAdvertisement/>
+        </PrivateRoute>
+      }
+    ],
   },
 ]);
 

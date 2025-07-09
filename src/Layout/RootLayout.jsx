@@ -13,7 +13,7 @@ const RootLayout = () => {
             
             <Outlet ></Outlet>
             <Footer/>
-            <Toaster />
+            
         </div>
     );
 };

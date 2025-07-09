@@ -77,7 +77,7 @@ const DrawerLayout = () => {
 
 
         {/* Main content */}
-        <main className="overflow-y-auto flex-1 bg-gray-50 p-4">
+        <main className="overflow-y-auto flex-1 bg-gray-50">
           <Outlet />
         </main>
       </div>

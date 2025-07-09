@@ -28,7 +28,7 @@ const VendorMenu = () => {
       <MenuItem
         icon={MegaphoneIcon}
         label='Add Advertisement'
-        address='add-advertisement'
+        address='/dashboard/add-advertisement'
       />
 
       {/* 🗂️ My Advertisements */}
