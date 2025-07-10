@@ -64,7 +64,7 @@ const MyAdds = () => {
                       setSelectedAd(ad);
                       setIsUpdateOpen(true);
                     }}
-                    className="text-blue-600 hover:text-blue-800"
+                    className="text-blue-600 cursor-pointer hover:text-blue-800"
                   >
                     <FiEdit />
                   </button>
@@ -73,7 +73,7 @@ const MyAdds = () => {
                       setSelectedAd(ad);
                       setIsDeleteOpen(true);
                     }}
-                    className="text-red-600 hover:text-red-800"
+                    className="text-red-600 cursor-pointer hover:text-red-800"
                   >
                     <FiTrash />
                   </button>

@@ -1,2 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
+.react-datepicker-wrapper,
+.react-datepicker__input-container input {
+  width: 100%;
+  box-sizing: border-box;
+}

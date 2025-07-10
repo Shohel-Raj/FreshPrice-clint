@@ -37,7 +37,8 @@ const UpdateAdModal = ({ isOpen, setIsOpen, handleUpdateSubmit, defaultData }) =
       status: 'pending',
       updateAt: new Date(),
     };
-    handleUpdateSubmit(updateDoc);
+    console.log(updateDoc);
+    // handleUpdateSubmit(updateDoc);
     setIsOpen(false);
   };
 
