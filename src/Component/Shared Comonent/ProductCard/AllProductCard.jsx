@@ -20,8 +20,10 @@ const AllProductCard = ({ product }) => {
   return (
     <motion.div
       className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, x: 50, y: -50 }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ amount: 0.2 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       {/* Image */}
       <div className="h-48 w-full overflow-hidden">
@@ -43,7 +45,7 @@ const AllProductCard = ({ product }) => {
         <div className="pt-2">
           <button
             onClick={handleViewDetails}
-            className="inline-block px-4 py-2 rounded-xl bg-[#FBD536] text-black font-medium text-sm hover:bg-black hover:text-white transition-colors duration-300"
+            className="inline-block px-4 cursor-pointer py-2 rounded-xl bg-[#FBD536] text-black font-medium text-sm hover:bg-white hover:border border-[#fbd536] transition-colors duration-300"
           >
             🔍 View Details
           </button>
