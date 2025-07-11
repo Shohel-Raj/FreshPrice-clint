@@ -5,6 +5,9 @@ import useMyAdvertisements from '../hooks/useMyAdvertisements';
 import UpdateAdModal from '../Component/Shared Comonent/Modals/UpdateAdModal';
 import DeleteAdModal from '../Component/Shared Comonent/Modals/DeleteAdModal';
 import LoadingSpinner from '../Component/Shared Comonent/LoadingSpinner/LoadingSpinner';
+import { useNavigate } from 'react-router';
+import { MdOutlineCampaign } from 'react-icons/md';
+import NoContent from '../Component/Shared Comonent/NoContent/NoContent';
 
 
 const MyAdds = () => {
@@ -12,6 +15,7 @@ const MyAdds = () => {
   const [selectedAd, setSelectedAd] = useState(null);
   const [isUpdateOpen, setIsUpdateOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleUpdateSubmit = (updateDoc) => {
     updateAd.mutate({ id: selectedAd._id, updatedAd: updateDoc });
@@ -22,7 +26,19 @@ const MyAdds = () => {
   };
 
   if (isLoading) return <LoadingSpinner/>;
-
+if (ads.length === 0) {
+    return (
+      <div className="min-h-screen">
+        <NoContent
+          message="No Ads found."
+          icon={MdOutlineCampaign}
+          showAction
+          actionLabel="Add Ads"
+          onActionClick={() => navigate('/dashboard/add-advertisement')}
+        />
+      </div>
+    );
+  }
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <motion.h2

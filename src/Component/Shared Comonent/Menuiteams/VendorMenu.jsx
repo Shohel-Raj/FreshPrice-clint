@@ -7,11 +7,13 @@ import {
 } from '@heroicons/react/24/outline';
 import MenuItem from './Menuiteam';
 
-const VendorMenu = () => {
+const VendorMenu = ({ setDrawerOpen ,drawerOpen}) => {
   return (
     <div>
       {/* ➕ Add Product */}
       <MenuItem
+        setDrawerOpen={setDrawerOpen}
+        drawerOpen={drawerOpen}
         icon={PlusCircleIcon}
         label='Add Product'
         address='add-product'
@@ -19,6 +21,8 @@ const VendorMenu = () => {
 
       {/* 📦 My Products */}
       <MenuItem
+        setDrawerOpen={setDrawerOpen}
+        drawerOpen={drawerOpen}
         icon={CubeIcon}
         label='My Products'
         address='my-products'
@@ -26,6 +30,8 @@ const VendorMenu = () => {
 
       {/* 📢 Add Advertisement */}
       <MenuItem
+        setDrawerOpen={setDrawerOpen}
+        drawerOpen={drawerOpen}
         icon={MegaphoneIcon}
         label='Add Advertisement'
         address='/dashboard/add-advertisement'
@@ -33,9 +39,11 @@ const VendorMenu = () => {
 
       {/* 🗂️ My Advertisements */}
       <MenuItem
+        setDrawerOpen={setDrawerOpen}
+        drawerOpen={drawerOpen}
         icon={RectangleStackIcon}
         label='My Advertisements'
-        address='my-advertisements'
+        address='/dashboard/my-advertisements'
       />
     </div>
   );

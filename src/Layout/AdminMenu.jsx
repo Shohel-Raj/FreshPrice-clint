@@ -14,28 +14,28 @@ const AdminMenu = () => {
       <MenuItem
         icon={UsersIcon}
         label='All Users'
-        address='all-users'
+        address='/dashboard/all-users'
       />
 
       {/* 📦 All Products */}
       <MenuItem
         icon={CubeIcon}
         label='All Products'
-        address='all-products'
+        address='/dashboard/all-products'
       />
 
       {/* 📢 All Advertisements */}
       <MenuItem
         icon={MegaphoneIcon}
         label='All Advertisements'
-        address='all-advertisements'
+        address='/dashboard/all-ads'
       />
 
       {/* 🛒 All Orders */}
       <MenuItem
         icon={ShoppingCartIcon}
         label='All Orders'
-        address='all-orders'
+        address='/dashboard/all-orders'
       />
     </div>
   );

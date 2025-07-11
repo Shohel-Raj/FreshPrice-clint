@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { NavLink } from 'react-router'
 
-const MenuItem = ({ label, address, icon: Icon }) => {
+const MenuItem = ({ label, address, icon: Icon ,setDrawerOpen,drawerOpen}) => {
   return (
     <NavLink
       to={address}
+      onClick={() => setDrawerOpen(!drawerOpen)}
       end
       className={({ isActive }) =>
         `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${

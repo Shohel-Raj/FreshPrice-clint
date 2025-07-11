@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, NavLink, Outlet,  } from 'react-router';
+import { Link, NavLink, Outlet, } from 'react-router';
 import { ImExit } from "react-icons/im";
 
 import {
@@ -8,7 +8,7 @@ import {
   Squares2X2Icon,
   PlusCircleIcon,
   ArrowLeftIcon,
-  
+
 } from '@heroicons/react/24/outline';
 import useRole from '../hooks/useRole';
 import MenuItem from '../Component/Shared Comonent/Menuiteams/Menuiteam';
@@ -18,11 +18,11 @@ import AdminMenu from './AdminMenu';
 
 const DrawerLayout = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-    // const [role, isRoleLoading] = useRole()
-    // console.log(role);
+  // const [role, isRoleLoading] = useRole()
+  // console.log(role);
 
 
-  const [role,setRole]=useState('vendor')
+  const [role, setRole] = useState("admin")
 
   return (
     <div className="flex h-screen">
@@ -35,11 +35,11 @@ const DrawerLayout = () => {
         <div className="flex flex-col justify-between h-full">
           {/* Top section */}
           <div>
-            <div className="p-6 text-xl font-bold border-b">🌿 Dashboard</div>
+            <div className="p-6 text-xl font-bold border-b">Dashboard</div>
             <nav className="mt-6 space-y-2 px-4">
 
               {role === 'user' && <UserMenu />}
-              {role === 'vendor' && <VendorMenu />}
+              {role === 'vendor' && <VendorMenu setDrawerOpen={setDrawerOpen} drawerOpen={drawerOpen} />}
               {role === 'admin' && <AdminMenu />}
             </nav>
           </div>
@@ -47,11 +47,11 @@ const DrawerLayout = () => {
           {/* Bottom Back Button */}
           <div className="p-4 border-t">
             <Link
-              to='/'             
+              to='/'
               className="flex items-center uppercase gap-2 text-sm px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 w-full justify-center"
             >
               <ImExit
- className="w-4 h-4" />
+                className="w-4 h-4" />
               Exit from DashBoard
             </Link>
           </div>

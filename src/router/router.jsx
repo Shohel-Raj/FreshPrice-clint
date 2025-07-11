@@ -12,6 +12,10 @@ import AddAdvertisement from "../Component/Form/AddAdvertisment";
 import AddProduct from "../Component/Form/AddProduct";
 import MyProduct from "../Pages/MyProduct";
 import MyAdds from "../Pages/MyAdds";
+import VendorRouter from "./VendorRouter";
+import AllAds from "../Pages/AllAds";
+import AllOrders from "../Pages/AllOrders";
+import AllUsersPaginated from "../Pages/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -54,29 +58,66 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:'add-advertisement',
+        path:'all-users',
         element:<PrivateRoute>
-          <AddAdvertisement/>
+          <AllUsersPaginated/>
         </PrivateRoute>
       },
       {
-        path:'add-product',
+        path:'all-products',
         element:<PrivateRoute>
-          <AddProduct/>
+          <AllProducts/>
         </PrivateRoute>
       },
       {
-        path:'my-products',
+        path:'all-ads',
         element:<PrivateRoute>
-          <MyProduct/>
+          <AllAds/>
         </PrivateRoute>
       },
       {
-        path:'my-advertisements',
+        path:'all-orders',
         element:<PrivateRoute>
-          <MyAdds/>
+          <AllOrders/>
         </PrivateRoute>
       },
+      {
+        path: 'add-advertisement',
+        element: <PrivateRoute>
+          <VendorRouter>
+            <AddAdvertisement />
+          </VendorRouter>
+
+        </PrivateRoute>
+      },
+      {
+        path: 'add-product',
+        element: <PrivateRoute>
+          <VendorRouter>
+            <AddProduct />
+          </VendorRouter>
+
+        </PrivateRoute>
+      },
+      {
+        path: 'my-products',
+        element: <PrivateRoute>
+          <VendorRouter>
+            <MyProduct />
+          </VendorRouter>
+        </PrivateRoute>
+      },
+     
+      {
+        path: 'my-advertisements',
+        element: <PrivateRoute>
+          <VendorRouter>
+            <MyAdds />
+          </VendorRouter>
+
+        </PrivateRoute>
+      },
+      
     ],
   },
 ]);
