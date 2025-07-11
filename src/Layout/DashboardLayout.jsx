@@ -18,11 +18,11 @@ import AdminMenu from './AdminMenu';
 
 const DrawerLayout = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  // const [role, isRoleLoading] = useRole()
+  const [role, isRoleLoading] = useRole()
   // console.log(role);
 
 
-  const [role, setRole] = useState("admin")
+  // const [role, setRole] = useState(role)
 
   return (
     <div className="flex h-screen">
