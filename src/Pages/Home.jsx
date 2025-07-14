@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SignUp from './SignUp/SignUp';
 import useAuth from '../hooks/useAuth';
 import LoadingSpinner from '../Component/Shared Comonent/LoadingSpinner/LoadingSpinner';
@@ -13,21 +13,14 @@ import { useLoaderData } from 'react-router';
 const Home = () => {
     const { loading } = useAuth()
     const data=useLoaderData()
-    console.log(data);
-    const dummyProduct = {
-        id: '123',
-        image: '/onion-market.jpg',
-        marketName: 'Karwan Bazar',
-        date: '2025-07-08',
-        items: [
-            { name: 'Onion', price: 30 },
-            { name: 'Potato', price: 22 },
-            { name: 'Tomato', price: 40 },
-            { name: 'Chili', price: 80 },
-        ],
-    };
+//     useEffect(()=>{
+//         fetch('http://localhost:3000/grouped-by-market')
+//   .then(res => res.json())
+//   .then(data => console.log(data))
+//     },[])
+ 
 
-    if (loading) {
+    if (loading ) {
         return <LoadingSpinner />
     }
     return (
@@ -61,13 +54,10 @@ const Home = () => {
                     <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 '>
 
                         {
-                            data.map(d=><ProductCard key={d.marketName} product={d}></ProductCard>)
+                            data?.map(d=><ProductCard key={d.marketName} product={d}></ProductCard>)
                         }
 
-                        {/* <ProductCard product={dummyProduct} />
-                        <ProductCard product={dummyProduct} />
-                        <ProductCard product={dummyProduct} />
-                        <ProductCard product={dummyProduct} /> */}
+
 
                     </div>
 

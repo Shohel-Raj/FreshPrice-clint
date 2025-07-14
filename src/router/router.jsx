@@ -18,6 +18,7 @@ import AllOrders from "../Pages/AllOrders";
 import AllUsersPaginated from "../Pages/AllUsers";
 import BecomeVendorForm from "../Component/Form/BecomeVendorForm";
 import LoadingSpinner from "../Component/Shared Comonent/LoadingSpinner/LoadingSpinner";
+import ProductDetails from "../Pages/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader:()=>fetch(`${import.meta.env.VITE_API_URL}/products/grouped-by-market`),
+        loader:()=>fetch(`${import.meta.env.VITE_API_URL}/grouped-by-market`),
         hydrateFallbackElement:<LoadingSpinner/>
         
       },
@@ -35,6 +36,12 @@ const router = createBrowserRouter([
         path: "/allproduct",
         element:
           <AllProducts />
+      },
+      {
+        path: "/productDetails/:productId",
+        element: <PrivateRoute>
+          <ProductDetails />
+        </PrivateRoute>
       },
       {
         path: "/About",

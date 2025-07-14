@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
   }));
 
   // For main image, pick first product's image or fallback placeholder
-const image = products[Math.floor(Math.random() * products.length)]?.image || fallback;
+const image = products[Math.floor(Math.random() * products.length)]?.image || "fallback";
 
   // For date, show the latest product date or empty
   const date = products[0]?.date || '';

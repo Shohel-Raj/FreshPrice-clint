@@ -13,7 +13,7 @@ console.log(product);
     if (!user) {
       navigate('/login');
     } else {
-      navigate(`/product/${product._id}`);
+      navigate(`/productDetails/${product._id}`);
     }
   };
 
