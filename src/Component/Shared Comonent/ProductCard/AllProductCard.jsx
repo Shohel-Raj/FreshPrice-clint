@@ -8,7 +8,7 @@ const AllProductCard = ({ product }) => {
   const { user } = useAuth();
 
   const latestPrice = product?.prices?.[product.prices.length - 1];
-
+console.log(product);
   const handleViewDetails = () => {
     if (!user) {
       navigate('/login');
@@ -36,8 +36,8 @@ const AllProductCard = ({ product }) => {
 
       {/* Content */}
       <div className="p-4 space-y-2">
-        <h2 className="text-lg font-bold text-gray-800">🥕 {product.itemName}</h2>
-        <p className="text-sm text-gray-600">💵 Price: ৳{product.unitPrice || 'N/A'}</p>
+        <h2 className="text-lg font-bold text-gray-800"> {product.itemName}</h2>
+        <p className="text-sm text-gray-600">💵 Price: {product.unitPrice || 'N/A'}  ৳</p>
         <p className="text-sm text-gray-600">📅 Date: {product?.date?.slice(0, 10)}</p>
         <p className="text-sm text-gray-600">🏪 Market: {product.marketName}</p>
         <p className="text-sm text-gray-600">👨‍🌾 Vendor: {product.vendorName}</p>

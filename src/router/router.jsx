@@ -16,6 +16,8 @@ import VendorRouter from "./VendorRouter";
 import AllAds from "../Pages/AllAds";
 import AllOrders from "../Pages/AllOrders";
 import AllUsersPaginated from "../Pages/AllUsers";
+import BecomeVendorForm from "../Component/Form/BecomeVendorForm";
+import LoadingSpinner from "../Component/Shared Comonent/LoadingSpinner/LoadingSpinner";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +26,10 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home
+        Component: Home,
+        loader:()=>fetch(`${import.meta.env.VITE_API_URL}/products/grouped-by-market`),
+        hydrateFallbackElement:<LoadingSpinner/>
+        
       },
       {
         path: "/allproduct",
@@ -58,27 +63,27 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:'all-users',
-        element:<PrivateRoute>
-          <AllUsersPaginated/>
+        path: 'all-users',
+        element: <PrivateRoute>
+          <AllUsersPaginated />
         </PrivateRoute>
       },
       {
-        path:'all-products',
-        element:<PrivateRoute>
-          <AllProducts/>
+        path: 'all-products',
+        element: <PrivateRoute>
+          <AllProducts />
         </PrivateRoute>
       },
       {
-        path:'all-ads',
-        element:<PrivateRoute>
-          <AllAds/>
+        path: 'all-ads',
+        element: <PrivateRoute>
+          <AllAds />
         </PrivateRoute>
       },
       {
-        path:'all-orders',
-        element:<PrivateRoute>
-          <AllOrders/>
+        path: 'all-orders',
+        element: <PrivateRoute>
+          <AllOrders />
         </PrivateRoute>
       },
       {
@@ -107,7 +112,7 @@ const router = createBrowserRouter([
           </VendorRouter>
         </PrivateRoute>
       },
-     
+
       {
         path: 'my-advertisements',
         element: <PrivateRoute>
@@ -117,7 +122,16 @@ const router = createBrowserRouter([
 
         </PrivateRoute>
       },
-      
+
+      // use menu
+
+      {
+        path: 'vendor-Request',
+        element: <PrivateRoute>
+          <BecomeVendorForm />
+        </PrivateRoute>
+      }
+
     ],
   },
 ]);

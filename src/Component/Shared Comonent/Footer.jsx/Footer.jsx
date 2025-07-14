@@ -5,7 +5,7 @@ import MainLogo from '../MainLogo/MainLogo';
 
 const Footer = () => {
     return (
-        <footer className="bg-[#F9EDE1] text-gray-700 py-10 ">
+        <footer className="bg-base-200 text-gray-700 py-10 ">
             <Container>
                 <div className="flex justify-between gap-3 md:flex-row flex-col pb-4">
                     <div>

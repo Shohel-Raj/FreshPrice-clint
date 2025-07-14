@@ -3,7 +3,6 @@ import toast from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
 import { motion } from 'framer-motion'
 import DatePicker from 'react-datepicker'
-// import 'react-datepicker/dist/react-datepicker.css'
 import {
   MdStorefront,
   MdLocalGroceryStore,
@@ -21,25 +20,28 @@ import {
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import { imageUpload } from '../../api/utils'
 import useAuth from '../../hooks/useAuth'
+import useVendorApplied from '../../hooks/useVendorApplied'
+import LoadingSpinner from '../Shared Comonent/LoadingSpinner/LoadingSpinner'
 
 const AddProduct = () => {
   const [loading, setLoading] = useState(false)
   const [selectedDate, setSelectedDate] = useState(new Date())
   const axiosSecure = useAxiosSecure()
   const { user } = useAuth()
+  const { vendor, isVendorLoading } = useVendorApplied()
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
 
     const form = e.target
-    const itemName = form.itemName.value
-    const marketName = form.marketName.value
-    const marketDescription = form.marketDescription.value
+    const itemName = form.itemName.value.trim()
+    const marketDescription = form.marketDescription.value.trim()
+    const itemDescription = form.itemDescription.value.trim()
     const unitPrice = parseFloat(form.unitPrice.value)
-    const itemDescription = form.itemDescription.value
     const imageFile = form.image.files[0]
 
-    if (!itemName || !marketName || !marketDescription || !unitPrice || !imageFile) {
+    if (!itemName || !vendor?.shopName || !marketDescription || !unitPrice || !imageFile) {
       toast.error('Please fill in all required fields')
       setLoading(false)
       return
@@ -52,15 +54,15 @@ const AddProduct = () => {
         vendorEmail: user?.email,
         vendorName: user?.displayName || '',
         itemName,
-        marketName,
-        marketDescription,
+        marketName: vendor?.shopName,
+        marketDescription: vendor?.marketDescription,
         itemDescription,
         status: 'pending',
         image: imageUrl,
         unitPrice,
         date: selectedDate.toISOString().split('T')[0],
         prices: [{ date: selectedDate.toISOString().split('T')[0], price: unitPrice }],
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
       }
 
       const res = await axiosSecure.post(`/products`, productData)
@@ -92,6 +94,10 @@ const AddProduct = () => {
     { icon: MdVerifiedUser, className: 'bottom-24 right-20', color: 'text-yellow-300', delay: 11 },
   ]
 
+  if (isVendorLoading) {
+    return <LoadingSpinner/>
+  }
+
   return (
     <div className='relative py-2 flex justify-center items-center min-h-screen px-4' style={{ backgroundColor: '#F9EDE1' }}>
       {/* Animated Icons */}
@@ -122,15 +128,15 @@ const AddProduct = () => {
             />
           </div>
 
-          {/* Market Name */}
+          {/* Market Name (Auto-filled from Vendor) */}
           <div>
             <label className='block mb-2 text-sm font-medium'>Market Name</label>
             <input
               type='text'
               name='marketName'
-              required
-              placeholder='Enter Market Name'
-              className='w-full px-3 py-2 border rounded-md bg-gray-100 text-gray-900 border-gray-300 focus:outline-[#FBD536]'
+              value={vendor?.shopName || ''}
+              readOnly
+              className='w-full px-3 py-2 border rounded-md bg-gray-200 text-gray-900 focus:outline-[#FBD536]  border-gray-300 cursor-not-allowed'
             />
           </div>
 
@@ -139,10 +145,11 @@ const AddProduct = () => {
             <label className='block mb-2 text-sm font-medium'>Market Description</label>
             <textarea
               name='marketDescription'
+              value={vendor?.marketDescription || ''}
               placeholder='Location, establishment year, details...'
               rows='3'
-              required
-              className='w-full px-3 py-2 border rounded-md bg-gray-100 text-gray-900 border-gray-300 focus:outline-[#FBD536]'
+              readOnly
+              className='w-full px-3 py-2 border rounded-md bg-gray-100 text-gray-900 cursor-not-allowed border-gray-300 focus:outline-[#FBD536]'
             ></textarea>
           </div>
 
@@ -196,6 +203,7 @@ const AddProduct = () => {
           <div>
             <button
               type='submit'
+              disabled={loading}
               className='bg-[#FBD536] w-full hover:bg-white hover:border hover:border-amber-400 cursor-pointer rounded-md py-3 font-medium'
             >
               {loading ? <TbFidgetSpinner className='animate-spin m-auto' /> : 'Submit Product'}

@@ -8,10 +8,12 @@ import HeroBanner from '../Component/Banner Section/HeroBanner';
 import ProductCard from '../Component/Shared Comonent/ProductCard/ProductCard';
 import AdvertisementCarousel from '../Component/Shared Comonent/Carusols/AdvertisementCarousel';
 import FeaturedVendors from '../Component/FeaturedVendors/FeaturedVendors';
+import { useLoaderData } from 'react-router';
 
 const Home = () => {
     const { loading } = useAuth()
-
+    const data=useLoaderData()
+    console.log(data);
     const dummyProduct = {
         id: '123',
         image: '/onion-market.jpg',
@@ -42,7 +44,7 @@ const Home = () => {
             </Seperatesection>
 
             {/*--------------- Product Section ---------------*/}
-            <Seperatesection>
+            <Seperatesection color='bg-base-200'>
 
                 <Container>
                     <div className=' py-3.5'>
@@ -56,12 +58,16 @@ const Home = () => {
 
 
                     </div>
-                    <div className='grid grid-cols-4 gap-3'>
+                    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 '>
 
+                        {
+                            data.map(d=><ProductCard key={d.marketName} product={d}></ProductCard>)
+                        }
+
+                        {/* <ProductCard product={dummyProduct} />
                         <ProductCard product={dummyProduct} />
                         <ProductCard product={dummyProduct} />
-                        <ProductCard product={dummyProduct} />
-                        <ProductCard product={dummyProduct} />
+                        <ProductCard product={dummyProduct} /> */}
 
                     </div>
 
@@ -95,7 +101,27 @@ const Home = () => {
 
             </Seperatesection>
             {/* ---------- Featured Vendors -----------*/}
-            <Seperatesection >
+            <Seperatesection color='bg-base-200'>
+
+                <Container>
+                    <div className=' py-3.5'>
+                        <h1 className="font-bold text-2xl md:text-3xl uppercase italic mb-3 text-center">
+                              Meet Our Featured Vendors
+                        </h1>
+                        <p className="md:w-3/4 mx-auto mb-3 text-center text-sm text-gray-600">
+                              Handpicked from local markets across the region, these trusted vendors bring you fresh, high-quality products daily. Explore their offerings, track price updates, and support your community by shopping smart and local.
+
+
+                        </p>
+
+
+
+                    </div>
+                    <FeaturedVendors/>
+                </Container>
+
+            </Seperatesection>
+            <Seperatesection color='bg-[#F9EDE1]'>
 
                 <Container>
                     <div className=' py-3.5'>
