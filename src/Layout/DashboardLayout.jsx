@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, NavLink, Outlet, } from 'react-router';
+import { Link, NavLink, Outlet, useNavigate, } from 'react-router';
 import { ImExit } from "react-icons/im";
 
 import {
@@ -19,10 +19,7 @@ import AdminMenu from './AdminMenu';
 const DrawerLayout = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [role, isRoleLoading] = useRole()
-  // console.log(role);
 
-
-  // const [role, setRole] = useState(role)
 
   return (
     <div className="flex h-screen">
@@ -48,7 +45,8 @@ const DrawerLayout = () => {
           <div className="p-4 border-t">
             <Link
               to='/'
-              className="flex items-center uppercase gap-2 text-sm px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 w-full justify-center"
+              className="flex items-center uppercase gap-2 text-sm px-4 py-2 border border-[#FBD536]
+                bg-[#FBD536] text-black hover:bg-white w-full md:w-autow-full justify-center"
             >
               <ImExit
                 className="w-4 h-4" />

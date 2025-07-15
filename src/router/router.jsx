@@ -19,6 +19,12 @@ import AllUsersPaginated from "../Pages/AllUsers";
 import BecomeVendorForm from "../Component/Form/BecomeVendorForm";
 import LoadingSpinner from "../Component/Shared Comonent/LoadingSpinner/LoadingSpinner";
 import ProductDetails from "../Pages/ProductDetails";
+import DashboardRedirect from "../Layout/DashboardRedirect";
+import VendorDashboard from "../Pages/VendorDashboard";
+import PriceTrand from "../Pages/PriceTrand";
+import WatchList from "../Pages/WatchList";
+import MyOrder from "../Pages/MyOrder";
+import AllProductadmin from "../Pages/AllProductadmin";
 
 const router = createBrowserRouter([
   {
@@ -65,9 +71,21 @@ const router = createBrowserRouter([
         index: true,
         element: (
           <PrivateRoute>
-            <Statistics />
+            <DashboardRedirect />
           </PrivateRoute>
         ),
+      },
+      {
+        path:'admin-home',
+        element:<PrivateRoute>
+          <Statistics/>
+        </PrivateRoute>
+      },
+      {
+        path:'vendor-home',
+        element:<PrivateRoute>
+          <VendorDashboard/>
+        </PrivateRoute>
       },
       {
         path: 'all-users',
@@ -78,7 +96,7 @@ const router = createBrowserRouter([
       {
         path: 'all-products',
         element: <PrivateRoute>
-          <AllProducts />
+          <AllProductadmin />
         </PrivateRoute>
       },
       {
@@ -137,7 +155,25 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <BecomeVendorForm />
         </PrivateRoute>
-      }
+      },
+      {
+        path: 'user-home',
+        element: <PrivateRoute>
+          <PriceTrand />
+        </PrivateRoute>
+      },
+      {
+        path: 'watchlist',
+        element: <PrivateRoute>
+          <WatchList />
+        </PrivateRoute>
+      },
+      {
+        path: 'my-orders',
+        element: <PrivateRoute>
+          <MyOrder />
+        </PrivateRoute>
+      },
 
     ],
   },

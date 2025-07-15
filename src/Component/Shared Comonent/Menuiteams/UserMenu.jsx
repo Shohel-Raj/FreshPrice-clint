@@ -21,7 +21,7 @@ const UserMenu = () => {
       <MenuItem
         icon={ChartBarIcon}
         label="View price trends"
-        address="price-trends"
+        address="user-home"
       />
 
       {/* ⭐ Manage watchlist */}
