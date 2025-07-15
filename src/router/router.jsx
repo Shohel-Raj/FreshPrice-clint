@@ -25,6 +25,7 @@ import PriceTrand from "../Pages/PriceTrand";
 import WatchList from "../Pages/WatchList";
 import MyOrder from "../Pages/MyOrder";
 import AllProductadmin from "../Pages/AllProductadmin";
+import Payment from "../Pages/Payment";
 
 const router = createBrowserRouter([
   {
@@ -54,7 +55,13 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <About />
         </PrivateRoute>
-      }
+      },
+      {
+        path: 'payment/:id',
+        element: <PrivateRoute>
+          <Payment />
+        </PrivateRoute>
+      },
     ]
   },
   { path: '/login', element: <Login /> },
@@ -168,6 +175,7 @@ const router = createBrowserRouter([
           <WatchList />
         </PrivateRoute>
       },
+      
       {
         path: 'my-orders',
         element: <PrivateRoute>
