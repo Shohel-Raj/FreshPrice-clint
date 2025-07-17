@@ -8,6 +8,8 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import useRole from '../../../hooks/useRole';
+import Container from '../Container/Container';
+
 
 const ProductDetailsCard = () => {
   const { productId } = useParams();
@@ -97,6 +99,7 @@ const ProductDetailsCard = () => {
 
   const isDisabled = role === 'admin' || role === 'vendor' || alreadyWatchlisted;
   return (
+    <>
     <motion.div
       className="rounded-2xl shadow-xl p-6 mx-auto space-y-4"
       initial={{ opacity: 0, y: 20 }}
@@ -182,6 +185,10 @@ const ProductDetailsCard = () => {
         </div>
       </div>
     </motion.div>
+   
+    
+    </>
+    
   );
 };
 

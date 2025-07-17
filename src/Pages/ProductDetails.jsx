@@ -4,10 +4,22 @@ import SeparateSection from '../Component/Shared Comonent/Seperate section/Seper
 import ProductDetailsCard from '../Component/Shared Comonent/ProductCard/ProductDetailsCard';
 import { useParams } from 'react-router';
 
-const ProductDetails = () => {
-    //   const { id } = useParams(); 
-    //   console.log(id);
+import { axiosSecure } from '../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import ReviewSection from '../Component/Product Reviews/ReviewSection';
+import PriceComparisonChart from '../Component/PriceComparisonChart';
 
+const ProductDetails = () => {
+  const { productId } = useParams();
+    //   console.log(id);
+const { data: product, isLoading } = useQuery({
+    queryKey: ['product', productId],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/products/${productId}`);
+      return res.data;
+    },
+    enabled: !!productId,
+  });
 
     return (
         <>
@@ -32,6 +44,20 @@ const ProductDetails = () => {
                     <ProductDetailsCard ></ProductDetailsCard>
                 </Container>
             </SeparateSection>
+            <SeparateSection color='bg-base-200'>
+                <Container>
+
+                    <PriceComparisonChart productId={productId}></PriceComparisonChart>
+                </Container>
+            </SeparateSection>
+            <SeparateSection color='bg-[#F9EDE1]'>
+                <Container>
+        
+                    <ReviewSection productId={product?._id}></ReviewSection>
+                </Container>
+
+            </SeparateSection>
+
 
 
 
