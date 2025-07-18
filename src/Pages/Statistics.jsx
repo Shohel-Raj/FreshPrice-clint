@@ -5,6 +5,8 @@ import useAxiosSecure from '../hooks/useAxiosSecure';
 import LoadingSpinner from '../Component/Shared Comonent/LoadingSpinner/LoadingSpinner';
 import StatisticCard from '../Component/Shared Comonent/StatisticCard';
 import { TbBuildingStore, TbCheck, TbClock, TbUsers } from 'react-icons/tb';
+import TopOrderedProductsTable from '../Component/Table/TopOrderedProductsTable';
+import AdminStatsGraph from '../Component/AdminStatsGrap';
 
 const Statistics = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,7 +18,7 @@ const Statistics = () => {
       return res.data;
     },
   });
-  console.log(data);
+   
 
   if (isLoading) return <LoadingSpinner />;
   if (isError) {
@@ -25,7 +27,8 @@ const Statistics = () => {
   }
 
   return <>
-   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mx-5 my-10">
+
+   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-6 mt-10">
       <StatisticCard
         title="Pending Products"
         value={data.pendingProducts}
@@ -51,8 +54,15 @@ const Statistics = () => {
         bgColor="bg-purple-300"
       />
     </div>
-  
-  
+  <div className='grid grid-cols-1 md:grid-cols-2 p-6 gap-2.5 items-stretch'>
+    <div className='basis-1 h-full'>
+    <AdminStatsGraph/>
+    </div>
+    <div className='basis-1  h-full'>
+      <TopOrderedProductsTable />
+    </div>
+  </div>
+      
   </>
 };
 

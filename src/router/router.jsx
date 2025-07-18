@@ -26,6 +26,7 @@ import WatchList from "../Pages/WatchList";
 import MyOrder from "../Pages/MyOrder";
 import AllProductadmin from "../Pages/AllProductadmin";
 import Payment from "../Pages/Payment";
+import AllVendor from "../Pages/AllVendor";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +105,12 @@ const router = createBrowserRouter([
         path: 'all-products',
         element: <PrivateRoute>
           <AllProductadmin />
+        </PrivateRoute>
+      },
+      {
+        path: 'all-vendor',
+        element: <PrivateRoute>
+          <AllVendor/>
         </PrivateRoute>
       },
       {

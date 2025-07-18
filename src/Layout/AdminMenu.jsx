@@ -13,6 +13,12 @@ const AdminMenu = () => {
       {/* 👥 All Users */}
       <MenuItem
         icon={UsersIcon}
+        label='Statistic'
+        address='/dashboard/admin-home'
+      />
+      {/* 👥 All Users */}
+      <MenuItem
+        icon={UsersIcon}
         label='All Users'
         address='/dashboard/all-users'
       />
@@ -36,6 +42,12 @@ const AdminMenu = () => {
         icon={ShoppingCartIcon}
         label='All Orders'
         address='/dashboard/all-orders'
+      />
+      {/*  All vendor */}
+      <MenuItem
+        icon={ShoppingCartIcon}
+        label='All Vendor'
+        address='/dashboard/all-vendor'
       />
     </div>
   );

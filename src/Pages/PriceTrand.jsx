@@ -3,7 +3,7 @@ import PriceTrendComparison from '../Component/PriceTrendComparison';
 
 const PriceTrand = () => {
     return (
-        <div>
+        <div className='p-6 max-w-6xl mx-auto'>
             <PriceTrendComparison/>
         </div>
     );
