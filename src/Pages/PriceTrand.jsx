@@ -1,9 +1,10 @@
 import React from 'react';
+import PriceTrendComparison from '../Component/PriceTrendComparison';
 
 const PriceTrand = () => {
     return (
         <div>
-            trand
+            <PriceTrendComparison/>
         </div>
     );
 };

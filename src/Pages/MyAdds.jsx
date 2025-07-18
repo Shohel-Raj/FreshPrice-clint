@@ -24,7 +24,7 @@ const MyAdds = () => {
   const handleDelete = () => {
     deleteAd.mutate(selectedAd._id);
   };
-
+console.log(ads);
   if (isLoading) return <LoadingSpinner/>;
 if (ads.length === 0) {
     return (
@@ -60,7 +60,7 @@ if (ads.length === 0) {
             </tr>
           </thead>
           <tbody>
-            {ads.map((ad) => (
+            {ads.ads?.map((ad) => (
               <motion.tr
                 key={ad._id}
                 className="border-t hover:bg-yellow-50"

@@ -79,8 +79,9 @@ const CheckoutForm = ({ product, quantity, totalPrice }) => {
       const orderData = {
         userEmail: user?.email,
         productId: product._id,
-        productTitle: product.title,
+        productTitle: product.itemName,
         productImage: product.image,
+        Market: product.marketName,
         quantity,
         totalPrice,
         transactionId: paymentIntent.id,

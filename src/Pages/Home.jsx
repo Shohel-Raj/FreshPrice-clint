@@ -13,11 +13,11 @@ import { useLoaderData } from 'react-router';
 const Home = () => {
     const { loading } = useAuth()
     const data=useLoaderData()
-//     useEffect(()=>{
-//         fetch('http://localhost:3000/grouped-by-market')
-//   .then(res => res.json())
-//   .then(data => console.log(data))
-//     },[])
+    useEffect(()=>{
+        fetch('http://localhost:3000/grouped-by-market')
+  .then(res => res.json())
+  .then(data => console.log(data))
+    },[])
  
 
     if (loading ) {

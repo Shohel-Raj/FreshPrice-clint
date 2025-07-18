@@ -3,17 +3,45 @@ import {
   BookmarkSquareIcon,
   ListBulletIcon,
 } from '@heroicons/react/24/outline';
-import React from 'react';
-import MenuItem from './Menuiteam';
 import { StoreIcon, UserCircleIcon } from 'lucide-react';
-import useVendorApplied from '../../../hooks/useVendorApplied';
+import React, { useEffect, useState } from 'react';
+import MenuItem from './Menuiteam';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import { EyeIcon, ClipboardDocumentListIcon } from '@heroicons/react/24/outline'; // You imported them but didn't use them
+import axios from 'axios';
+import useAuth from '../../../hooks/useAuth';
 
 const UserMenu = () => {
-  const {vendor, isVendorLoading} = useVendorApplied();
+  const { user, loading } = useAuth();
+  const [vendor, setVendor] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  console.log(vendor);
 
-  // if (isVendorLoading) return <LoadingSpinner />;
+
+  useEffect(() => {
+    const fetchVendor = async () => {
+
+      try {
+        const { data } = await axios.get(`/featured-vendors/${user?.email}`);
+        setVendor(data);
+      } catch (error) {
+        if (error.response?.status === 404) {
+          setVendor(null);
+        } else {
+          console.error('Error fetching vendor:', error);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (!loading) {
+      fetchVendor();
+    }
+  }, [user?.email, loading]);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div>

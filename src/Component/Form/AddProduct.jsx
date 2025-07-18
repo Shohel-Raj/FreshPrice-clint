@@ -29,55 +29,59 @@ const AddProduct = () => {
   const axiosSecure = useAxiosSecure()
   const { user } = useAuth()
   const { vendor, isVendorLoading } = useVendorApplied()
+  console.log(vendor);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setLoading(true)
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
 
-    const form = e.target
-    const itemName = form.itemName.value.trim()
-    const marketDescription = form.marketDescription.value.trim()
-    const itemDescription = form.itemDescription.value.trim()
-    const unitPrice = parseFloat(form.unitPrice.value)
-    const imageFile = form.image.files[0]
+  const form = e.target;
+  const itemName = form.itemName.value.trim();
+  // Get marketDescription from vendor object, NOT from form input
+  const marketDescription = vendor?.marketDescription || '';
+  const itemDescription = form.itemDescription.value.trim();
+  const unitPrice = parseFloat(form.unitPrice.value);
+  const imageFile = form.image.files[0];
 
-    if (!itemName || !vendor?.shopName || !marketDescription || !unitPrice || !imageFile) {
-      toast.error('Please fill in all required fields')
-      setLoading(false)
-      return
-    }
+  console.log({ itemName, marketDescription, unitPrice, imageFile, vendor });
 
-    try {
-      const imageUrl = await imageUpload(imageFile)
-
-      const productData = {
-        vendorEmail: user?.email,
-        vendorName: user?.displayName || '',
-        itemName,
-        marketName: vendor?.shopName,
-        marketDescription: vendor?.marketDescription,
-        itemDescription,
-        status: 'pending',
-        image: imageUrl,
-        unitPrice,
-        date: selectedDate.toISOString().split('T')[0],
-        prices: [{ date: selectedDate.toISOString().split('T')[0], price: unitPrice }],
-        createdAt: new Date().toISOString(),
-      }
-
-      const res = await axiosSecure.post(`/products`, productData)
-      if (res.data.insertedId) {
-        toast.success('Product submitted for review!')
-        form.reset()
-        setSelectedDate(new Date())
-      }
-    } catch (err) {
-      console.error(err)
-      toast.error('Submission failed')
-    } finally {
-      setLoading(false)
-    }
+  // Validate inputs
+  if (!itemName || !vendor?.shopName || !marketDescription || isNaN(unitPrice) || unitPrice <= 0 || !imageFile) {
+    toast.error('Please fill in all required fields');
+    setLoading(false);
+    return;
   }
+
+  try {
+    const imageUrl = await imageUpload(imageFile);
+
+    const productData = {
+      vendorEmail: user?.email,
+      vendorName: user?.displayName || '',
+      itemName,
+      marketName: vendor?.shopName,
+      marketDescription,
+      itemDescription,
+      status: 'pending',
+      image: imageUrl,
+      unitPrice,
+      date: selectedDate.toISOString().split('T')[0],
+      prices: [{ date: selectedDate.toISOString().split('T')[0], price: unitPrice }],
+      createdAt: new Date().toISOString(),
+    };
+    const res = await axiosSecure.post(`/products`, productData);
+    if (res.data.insertedId) {
+      toast.success('Product submitted for review!');
+      form.reset();
+      setSelectedDate(new Date());
+    }
+  } catch (err) {
+    console.error(err);
+    toast.error('Submission failed');
+  } finally {
+    setLoading(false);
+  }
+};
 
   const icons = [
     { icon: MdStorefront, className: 'top-10 left-5', color: 'text-red-300', delay: 0 },
