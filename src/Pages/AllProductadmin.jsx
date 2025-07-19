@@ -120,13 +120,12 @@ const AllProductAdmin = () => {
                         onChange={(e) =>
                           updateStatus.mutate({ productId: product._id, newStatus: e.target.value })
                         }
-                        className={`border rounded px-2 py-1 ${
-                          product.status === 'verified'
+                        className={`border rounded px-2 py-1 ${product.status === 'verified'
                             ? 'bg-green-100'
                             : product.status === 'rejected'
-                            ? 'bg-red-100'
-                            : 'bg-yellow-100'
-                        }`}
+                              ? 'bg-red-100'
+                              : 'bg-yellow-100'
+                          }`}
                       >
                         <option value="pending">Pending</option>
                         <option value="verified">Verified</option>
@@ -173,25 +172,27 @@ const AllProductAdmin = () => {
                       </button>
 
                       {/* Hide Reject button if already rejected */}
-{product.status !== 'rejected' && (
-  <button
-    disabled={updateStatus.isLoading}
-    onClick={() => {
-      setSelectedProductId(product._id);
-      setShowRejectModal(true);
-    }}
-    className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded"
-  >
-    Reject
-  </button>
-)}
+                      {product.status !== 'rejected' && (
+                        <button
+                          disabled={updateStatus.isLoading}
+                          onClick={() => {
+                            setSelectedProductId(product._id);
+                            setShowRejectModal(true);
+                          }}
+                          className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded"
+                        >
+                          Reject
+                        </button>
+                      )}
                     </td>
                   </tr>
                 );
               })
             ) : (
-              <tr>
-                <td colSpan="7" className="p-4 text-center text-gray-500">
+              <tr >
+                
+                <td colSpan='7' className="p-4 min-h-[calc(100vh-200px)] text-center
+                 items-center text-2xl  text-gray-500">
                   No products found.
                 </td>
               </tr>
@@ -206,9 +207,8 @@ const AllProductAdmin = () => {
           {Array.from({ length: totalPages }, (_, i) => (
             <button
               key={i}
-              className={`px-3 py-1 border rounded ${
-                i + 1 === page ? 'bg-[#FBD536] text-black' : 'bg-white text-gray-700'
-              }`}
+              className={`px-3 py-1 border rounded ${i + 1 === page ? 'bg-[#FBD536] text-black' : 'bg-white text-gray-700'
+                }`}
               onClick={() => setPage(i + 1)}
             >
               {i + 1}

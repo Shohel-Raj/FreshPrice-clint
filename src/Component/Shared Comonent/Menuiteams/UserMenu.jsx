@@ -14,30 +14,24 @@ const UserMenu = () => {
   const { user, loading } = useAuth();
   const [vendor, setVendor] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(vendor);
 
 
   useEffect(() => {
-    const fetchVendor = async () => {
-
-      try {
-        const { data } = await axios.get(`/featured-vendors/${user?.email}`);
-        setVendor(data);
-      } catch (error) {
-        if (error.response?.status === 404) {
-          setVendor(null);
-        } else {
-          console.error('Error fetching vendor:', error);
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    if (!loading) {
-      fetchVendor();
+  const fetchVendor = async () => {
+    try {
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/featured-vendors/${user?.email}`);
+      setVendor(data.applied); // true or false
+    } catch (error) {
+      setVendor(false); // Treat any error as "not applied"
+    } finally {
+      setIsLoading(false);
     }
-  }, [user?.email, loading]);
+  };
+
+  if (!loading && user?.email) {
+    fetchVendor();
+  }
+}, [user?.email, loading]);
 
   if (isLoading) {
     return <LoadingSpinner />;

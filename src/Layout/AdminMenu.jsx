@@ -4,15 +4,17 @@ import {
   CubeIcon,
   MegaphoneIcon,
   ShoppingCartIcon,
+  BuildingStorefrontIcon,
 } from '@heroicons/react/24/outline';
 import MenuItem from '../Component/Shared Comonent/Menuiteams/Menuiteam';
+import { ChartBarIcon } from 'lucide-react';
 
 const AdminMenu = () => {
   return (
     <div>
       {/* 👥 All Users */}
       <MenuItem
-        icon={UsersIcon}
+        icon={ChartBarIcon}
         label='Statistic'
         address='/dashboard/admin-home'
       />
@@ -45,7 +47,7 @@ const AdminMenu = () => {
       />
       {/*  All vendor */}
       <MenuItem
-        icon={ShoppingCartIcon}
+        icon={BuildingStorefrontIcon}
         label='All Vendor'
         address='/dashboard/all-vendor'
       />

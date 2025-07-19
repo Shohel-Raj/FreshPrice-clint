@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import LoadingSpinner from '../Component/Shared Comonent/LoadingSpinner/LoadingSpinner';
 
 const AllOrders = () => {
   const [page, setPage] = useState(1);
@@ -45,9 +46,12 @@ const AllOrders = () => {
 
       {isLoading ? (
         <div className="flex justify-center items-center h-40">
-          <span className="loading loading-spinner loading-md text-[#FBD536]" />
+          <LoadingSpinner/>
         </div>
-      ) : (
+      ) : (<>
+          {
+            orders.length ===0 ? <div className='min-h-[calc(100vh-150px)] flex items-center justify-center text-2xl text-gray-500 text-center'> No order Available</div> : (
+        
         <div className="grid grid-cols-1 min-h-screen">
           <table className="min-w-full table-auto">
             <thead className="bg-[#FBD536] text-left">
@@ -135,10 +139,12 @@ const AllOrders = () => {
           </div>
 
           {isFetching && (
-            <div className="text-sm text-gray-400 text-center mt-2">Loading...</div>
+            <LoadingSpinner/>
           )}
         </div>
-      )}
+      )
+          }
+      </>)}
     </motion.div>
   );
 };

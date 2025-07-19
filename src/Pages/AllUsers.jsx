@@ -1,173 +1,125 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaUserShield, FaUserTie, FaUser } from 'react-icons/fa';
-// import usePaginatedUsers from '../hooks/usePaginatedUsers';
+import { FaSearch, FaUserFriends } from 'react-icons/fa';
+import useAllUsers from '../hooks/useAllUsers';
+import UserTable from '../Component/Table/UserTable';
 import UpdateUserModal from '../Component/Shared Comonent/Modals/UpdateUserModal';
 import DeleteUserModal from '../Component/Shared Comonent/Modals/DeleteUserModal';
-import usePaginatedUsers from '../hooks/usePaginatedUsers';
-// import UpdateUserModal from './UpdateUserModal';
-// import DeleteUserModal from './DeleteUserModal';
 
-const roleIcons = {
-  admin: <FaUserShield className="text-blue-600 text-lg" />,
-  vendor: <FaUserTie className="text-green-600 text-lg" />,
-  buyer: <FaUser className="text-gray-600 text-lg" />,
-};
-
-const AllUsersPaginated = () => {
+const AllUsers = () => {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const limit = 10;
+  const [search, setSearch] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+
   const [selectedUser, setSelectedUser] = useState(null);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const { data, isLoading, isFetching, refetch } = usePaginatedUsers(page, limit);
-  const { users = [], totalPages = 1 } = data || {};
+  const { data, isLoading, refetch } = useAllUsers({ page, limit, search });
 
-  const handleLimitChange = (e) => {
-    setLimit(parseInt(e.target.value));
+  const users = data?.users || [];
+  const totalPages = data?.totalPages || 0;
+
+  const handleSearch = (e) => {
+    e.preventDefault();
     setPage(1);
+    setSearch(searchInput);
+  };
+
+  const handleEdit = (user) => {
+    setSelectedUser(user);
+    setShowUpdateModal(true);
+  };
+
+  const handleDelete = (user) => {
+    setSelectedUser(user);
+    setShowDeleteModal(true);
+  };
+
+  const closeModals = () => {
+    setSelectedUser(null);
+    setShowUpdateModal(false);
+    setShowDeleteModal(false);
   };
 
   return (
-    <motion.div
-      className="bg-white shadow-lg rounded-xl p-6 overflow-x-auto"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-    >
-      <h2 className="text-2xl font-bold mb-4 text-[#333]">All Users</h2>
-
-      {isLoading ? (
-        <div className="flex justify-center items-center h-40">
-          <span className="loading loading-spinner loading-md text-[#FBD536]" />
+    <div className="p-6">
+      <div className='flex justify-between'>
+        <div className='flex gap-1.5 items-center'>
+          <FaUserFriends size={30}/>
+          <h1 className='font-bold text-2xl'>All Users</h1>
         </div>
-      ) : (
-        <div className="grid grid-cols-1 min-h-screen">
-          <table className="min-w-full table-auto">
-            <thead className="bg-[#FBD536] text-left">
-              <tr>
-                <th className="p-3">#</th>
-                <th className="p-3">Name</th>
-                <th className="p-3">Email</th>
-                <th className="p-3">Status</th>
-                <th className="p-3">Role</th>
-                <th className="p-3">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => (
-                <tr key={user._id} className="border-b hover:bg-[#F9EDE1]/50 transition-colors">
-                  <td className="p-3 font-semibold text-sm">{(page - 1) * limit + index + 1}</td>
-                  <td className="p-3">{user.name || 'N/A'}</td>
-                  <td className="p-3">{user.email}</td>
-                  <td className="p-3">
-                    <span className={`px-2 py-1 rounded-full text-xs font-semibold
-                      ${user.status === 'verified' || user.status === 'active'
-                        ? 'bg-green-100 text-green-700'
-                        : user.status === 'pending'
-                          ? 'bg-yellow-100 text-yellow-700'
-                          : user.status === 'not-verified' || user.status === 'rejected'
-                            ? 'bg-red-100 text-red-700'
-                            : 'bg-gray-100 text-gray-600'}
-    `}>
-                      {user.status || 'unknown'}
-                    </span>
-                  </td>
-                  <td className="p-3 flex items-center gap-2">
-                    {roleIcons[user.role] || <FaUser className="text-gray-600" />}
-                    <span className="capitalize">{user.role || 'N/A'}</span>
-                  </td>
-                  <td className="p-3">
-                    <button
-                      className="text-blue-600 cursor-pointer hover:underline mr-2"
-                      onClick={() => {
-                        setSelectedUser(user);
-                        setShowUpdateModal(true);
-                      }}
-                    >
-                      Update
-                    </button>
-                    <button
-                      className="text-red-500 cursor-pointer hover:underline"
-                      onClick={() => {
-                        setSelectedUser(user);
-                        setShowDeleteModal(true);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div>
+          <form
+        onSubmit={handleSearch}
+        className="mb-6 flex justify-center w-60"
+      >
+        <div className="relative w-full">
+          <input
+            type="text"
+            placeholder="Search by name or email"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            className="w-full pl-4 pr-14 py-3 rounded-full shadow border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FBD536] transition"
+          />
+          <button
+            type="submit"
+            className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#FBD536] hover:bg-yellow-500 text-white p-2 rounded-full shadow transition"
+          >
+            <FaSearch />
+          </button>
+        </div>
+      </form>
+        </div>
+      </div>
+      
 
-          <div className="mt-6 flex flex-wrap justify-center items-center gap-3">
+
+      {/* User Table */}
+      <UserTable
+        users={users}
+        isLoading={isLoading}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex justify-center mt-6 gap-2 flex-wrap">
+          {[...Array(totalPages).keys()].map((num) => (
             <button
-              disabled={page === 1}
-              onClick={() => setPage(prev => prev - 1)}
-              className="px-3 py-1 border rounded disabled:opacity-50"
+              key={num}
+              onClick={() => setPage(num + 1)}
+              className={`px-3 py-1 rounded-md transition font-medium ${page === num + 1
+                  ? 'bg-[#FBD536] text-white shadow'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
             >
-              Prev
+              {num + 1}
             </button>
-
-            {[...Array(totalPages)].map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setPage(i + 1)}
-                className={`px-3 py-1 rounded border cursor-pointer ${page === i + 1 ? 'bg-[#FBD536] font-bold' : 'bg-white'
-                  }`}
-              >
-                {i + 1}
-              </button>
-            ))}
-
-            <button
-              disabled={page === totalPages}
-              onClick={() => setPage(prev => prev + 1)}
-              className="px-3 py-1 border rounded disabled:opacity-50"
-            >
-              Next
-            </button>
-
-            <div className="ml-4">
-              <label className="mr-2 text-sm text-gray-600">Rows per page:</label>
-              <select
-                value={limit}
-                onChange={handleLimitChange}
-                className="border px-2 py-1 rounded"
-              >
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-              </select>
-            </div>
-          </div>
-
-          {isFetching && (
-            <div className="text-sm text-gray-400 text-center mt-2">Loading page...</div>
-          )}
-
-          {showUpdateModal && selectedUser && (
-            <UpdateUserModal
-              user={selectedUser}
-              onClose={() => setShowUpdateModal(false)}
-              refetch={refetch}
-            />
-          )}
-
-          {showDeleteModal && selectedUser && (
-            <DeleteUserModal
-              user={selectedUser}
-              onClose={() => setShowDeleteModal(false)}
-              refetch={refetch}
-            />
-          )}
+          ))}
         </div>
       )}
-    </motion.div>
+
+      {/* Update Modal */}
+      {showUpdateModal && selectedUser && (
+        <UpdateUserModal
+          user={selectedUser}
+          onClose={closeModals}
+          refetch={refetch}
+        />
+      )}
+
+      {/* Delete Modal */}
+      {showDeleteModal && selectedUser && (
+        <DeleteUserModal
+          user={selectedUser}
+          onClose={closeModals}
+          refetch={refetch}
+        />
+      )}
+    </div>
   );
 };
 
-export default AllUsersPaginated;
+export default AllUsers;

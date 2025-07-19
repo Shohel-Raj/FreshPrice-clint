@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import useAuth from '../hooks/useAuth';
-
+import NoContent from '../Component/Shared Comonent/NoContent/NoContent';
+import { BsCartX } from 'react-icons/bs'
 const MyOrdersTable = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [orders, setOrders] = useState([]);
+  const navigate =useNavigate();
 
   useEffect(() => {
     if (!user?.email) return;
@@ -18,6 +20,16 @@ const MyOrdersTable = () => {
       .then((res) => setOrders(res.data))
       .catch(() => toast.error('Failed to load orders'));
   }, [user?.email, axiosSecure]);
+
+  if(orders.length===0){
+    return <NoContent
+     icon={BsCartX}
+  message="You haven’t placed any orders yet. Explore products and shop now!"
+  showAction={true}
+  actionLabel="Start Shopping"
+  onActionClick={() => navigate('/allproduct')}
+    />
+  }
 
   return (
     <div className="p-6 max-w-6xl mx-auto">

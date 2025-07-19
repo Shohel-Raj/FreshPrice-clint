@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 // import { toast } from 'react-toastify';
 import { FiTrash } from 'react-icons/fi';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus, FaRegHeart } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import NoContent from '../Component/Shared Comonent/NoContent/NoContent';
 
 
 const WatchList = () => {
@@ -14,7 +15,8 @@ const WatchList = () => {
     const axiosSecure = useAxiosSecure();
     const [watchlist, setWatchlist] = useState([]);
     const [selectedProductId, setSelectedProductId] = useState(null);
-    4
+     const navigate =useNavigate();
+    
     // Fetch user's watchlist
     useEffect(() => {
         if (user?.email) {
@@ -37,6 +39,17 @@ const WatchList = () => {
             setSelectedProductId(null);
         }
     };
+
+    
+  if(watchlist.length===0){
+    return <NoContent
+     icon={FaRegHeart}
+  message="You haven’t placed any orders yet. Explore products and shop now!"
+  showAction={true}
+  actionLabel="Start Shopping"
+  onActionClick={() => navigate('/allproduct')}
+    />
+  }
 
     return (
         <div className="p-6 max-w-6xl mx-auto">

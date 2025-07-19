@@ -67,7 +67,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-lime-50 via-white to-lime-100 px-4">
+    <div className="flex justify-center items-center min-h-screen bg-[#F9EDE1] px-4">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ const SignUp = () => {
         className="w-full max-w-md p-8 space-y-6 bg-white rounded-2xl shadow-xl"
       >
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-lime-600">Sign Up</h1>
+          <h1 className="text-4xl font-bold text-[#FBD536]">Sign Up</h1>
           <p className="text-gray-500 mt-2">Welcome to FreshPrice!</p>
         </div>
 
@@ -87,7 +87,7 @@ const SignUp = () => {
               name="name"
               required
               placeholder="Enter your full name"
-              className="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-lime-500"
+              className="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#FBD536]"
             />
           </div>
 
@@ -97,7 +97,7 @@ const SignUp = () => {
               type="file"
               name="image"
               accept="image/*"
-              className="w-full mt-1 cursor-pointer file:rounded-md file:border-0 file:px-3 file:py-2 file:bg-lime-100 file:text-lime-700"
+              className="w-full mt-1 cursor-pointer file:rounded-md file:border-0 file:px-3 file:py-2 file:bg-[#FBD536]/20 file:text-[#FBD536]"
             />
           </div>
 
@@ -108,7 +108,7 @@ const SignUp = () => {
               name="email"
               required
               placeholder="you@example.com"
-              className="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-lime-500"
+              className="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#FBD536]"
             />
           </div>
 
@@ -120,14 +120,14 @@ const SignUp = () => {
               required
               autoComplete="new-password"
               placeholder="••••••••"
-              className="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-lime-500"
+              className="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#FBD536]"
             />
           </div>
 
           <button
             type="submit"
             disabled={submitting || loading}
-            className="w-full py-3 rounded-lg bg-lime-500 text-white font-semibold hover:bg-lime-600 transition-all duration-200"
+            className="w-full py-3 rounded-lg bg-[#FBD536] text-white font-semibold hover:bg-[#f6c400] transition-all duration-200 cursor-pointer"
           >
             {submitting || loading ? (
               <TbFidgetSpinner className="animate-spin mx-auto" size={24} />
@@ -139,14 +139,14 @@ const SignUp = () => {
 
         <div className="flex items-center justify-center gap-2 text-sm text-gray-400 mt-2">
           <span className="w-full h-px bg-gray-200" />
-          or continue with
+          <p className="w-full text-center">or continue with</p>
           <span className="w-full h-px bg-gray-200" />
         </div>
 
         <motion.div
           whileTap={{ scale: 0.95 }}
           onClick={handleGoogleSignIn}
-          className="flex items-center justify-center gap-3 border py-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-all"
+          className="flex items-center justify-center gap-3 border py-2 rounded-lg cursor-pointer hover:bg-[#f9f2e5] transition-all"
         >
           <FcGoogle size={24} />
           <span className="text-sm font-medium text-gray-700">Sign up with Google</span>
@@ -156,7 +156,7 @@ const SignUp = () => {
           Already have an account?{' '}
           <Link
             to="/login"
-            className="text-lime-600 hover:underline hover:text-lime-500"
+            className="text-[#FBD536] hover:underline hover:text-[#f6c400] cursor-pointer"
           >
             Login
           </Link>
