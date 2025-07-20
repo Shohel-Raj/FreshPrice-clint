@@ -79,3 +79,56 @@ FreshPrice is a full-stack web application that enables users to explore, compar
 - 👥 All Vendor: Verified + reject vendor
 
 ---
+
+## 📦 NPM Packages Used
+
+Below is a list of all major NPM packages used in the project, categorized by their purpose:
+
+### ⚛️ Core Libraries
+| Package | Description |
+|--------|-------------|
+| `react` `react-dom` | React 19 for building the UI |
+| `react-router` | Client-side routing |
+
+### 🎨 Styling & UI
+| Package | Description |
+|---------|-------------|
+| `tailwindcss` | Utility-first CSS framework |
+| `daisyui` | Tailwind CSS UI components |
+| `@headlessui/react` | Accessible UI components |
+| `@heroicons/react` | Beautiful icons from the Tailwind team |
+| `lucide-react` | Icon library with modern design |
+| `framer-motion` | Animation library for React |
+
+### ⚙️ Forms & State
+| Package | Description |
+|---------|-------------|
+| `react-hook-form` | Form handling & validation |
+| `@tanstack/react-query` | Data fetching & caching |
+| `axios` | HTTP client for API calls |
+
+### 🔐 Authentication & Authorization
+| Package | Description |
+|---------|-------------|
+| `firebase` | Firebase Auth (Email & Google login) |
+| `jsonwebtoken` (backend) | JWT generation and verification |
+| `react-hot-toast` / `react-toastify` | Notification system |
+
+### 📦 Data Display
+| Package | Description |
+|---------|-------------|
+| `recharts` | Charting library for data visualization |
+| `react-datepicker` | Date picker component |
+| `react-spinners` | Loading indicators |
+
+### 💳 Payments
+| Package | Description |
+|---------|-------------|
+| `@stripe/react-stripe-js` | React bindings for Stripe |
+| `@stripe/stripe-js` | Load Stripe.js in the browser |
+
+### 🎠 Carousel/Slider
+| Package | Description |
+|---------|-------------|
+| `react-slick` | React wrapper for slick-carousel |
+| `slick-carousel` | Carousel styling dependency |
