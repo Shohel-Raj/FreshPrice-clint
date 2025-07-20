@@ -142,6 +142,9 @@ Create a `.env.local` file at the root with the following:
 # === Frontend Environment Variables ===
 VITE_API_URL=http://localhost:5000
 
+VITE_site_name=YourSiteName
+
+
 # Firebase Configuration
 VITE_FIREBASE_API_KEY=your_firebase_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
