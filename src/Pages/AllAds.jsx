@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { FiTrash2, FiCheckCircle } from 'react-icons/fi';
@@ -13,7 +13,9 @@ const AllAds = () => {
   const [filterStatus, setFilterStatus] = useState('');
   const [page, setPage] = useState(1);
   const limit = 5;
-
+useEffect(() => {
+    document.title = `${import.meta.env.VITE_site_name} | Ads`;
+  }, []);
   // ✅ Fetch Ads
   const { data, isLoading } = useQuery({
     queryKey: ['allAdvertisements', { page, filterStatus }],

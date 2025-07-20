@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiEdit, FiTrash } from 'react-icons/fi';
 import useMyAdvertisements from '../hooks/useMyAdvertisements';
@@ -16,6 +16,9 @@ const MyAdds = () => {
   const [isUpdateOpen, setIsUpdateOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+      document.title = `${import.meta.env.VITE_site_name} | My Ads`;
+    }, []);444
 
   const handleUpdateSubmit = (updateDoc) => {
     updateAd.mutate({ id: selectedAd._id, updatedAd: updateDoc });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import useAxiosSecure from '../hooks/useAxiosSecure';
@@ -10,6 +10,9 @@ import AdminStatsGraph from '../Component/AdminStatsGrap';
 
 const Statistics = () => {
   const axiosSecure = useAxiosSecure();
+  useEffect(() => {
+    document.title = `${import.meta.env.VITE_site_name} | statistics`;
+  }, []);
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['adminStatistics'],

@@ -5,13 +5,17 @@ import { toast } from 'react-hot-toast';
 import { TbFidgetSpinner } from 'react-icons/tb';
 import { imageUpload, saveUserInDb } from '../../api/utils';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const SignUp = () => {
   const { createUser, updateUserProfile, signInWithGoogle, loading } = useAuth();
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
+useEffect(() => {
+    document.title = `${import.meta.env.VITE_site_name} | Sign Up`;
+  }, []);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();

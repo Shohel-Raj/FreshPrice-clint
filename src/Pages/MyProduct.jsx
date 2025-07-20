@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 import { FiEdit, FiTrash } from 'react-icons/fi';
@@ -44,6 +44,9 @@ const MyProducts = () => {
   const [rejectionReason, setRejectionReason] = useState('');
   const [isRejectionModalOpen, setIsRejectionModalOpen] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    document.title = `${import.meta.env.VITE_site_name} | My Product`;
+  }, []);
 
   const handleDelete = () => {
     deleteProduct.mutate(selectedProduct._id);

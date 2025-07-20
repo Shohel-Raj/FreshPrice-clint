@@ -27,11 +27,13 @@ import MyOrder from "../Pages/MyOrder";
 import AllProductadmin from "../Pages/AllProductadmin";
 import Payment from "../Pages/Payment";
 import AllVendor from "../Pages/AllVendor";
+import ErrorPage from "../Pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage/>,
     children: [
       {
         index: true,

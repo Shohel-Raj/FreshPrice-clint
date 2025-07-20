@@ -55,6 +55,9 @@ const Payment = () => {
 
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1); // in kg
+  useEffect(() => {
+    document.title = `${import.meta.env.VITE_site_name} | Payent`;
+  }, []);
 
   useEffect(() => {
     if (id) {

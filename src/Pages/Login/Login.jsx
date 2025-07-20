@@ -6,13 +6,16 @@ import useAuth from '../../hooks/useAuth';
 import { saveUserInDb } from '../../api/utils';
 import LoadingSpinner from '../../Component/Shared Comonent/LoadingSpinner/LoadingSpinner';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 const Login = () => {
   const { signIn, signInWithGoogle, loading, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || '/';
-
+useEffect(() => {
+    document.title = `${import.meta.env.VITE_site_name} | Login`;
+  }, []);
   if (user) return <Navigate to={from} replace />;
   if (loading) return <LoadingSpinner />;
 

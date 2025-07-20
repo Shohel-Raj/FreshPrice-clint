@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../Component/Shared Comonent/Container/Container';
 import usePaginatedProducts from '../hooks/usePaginatedProducts';
 import AllProductCard from '../Component/Shared Comonent/ProductCard/AllProductCard';
@@ -12,6 +12,9 @@ const AllProducts = () => {
 
     const [sort, setSort] = useState('desc'); // 'asc' | 'desc'
     const [selectedDate, setSelectedDate] = useState('');
+    useEffect(() => {
+        document.title = `${import.meta.env.VITE_site_name} | All product`;
+      }, []);
 
     const { data, isLoading } = usePaginatedProducts(page, limit, sort, selectedDate);
     const totalPages = Number.isFinite(data?.total) ? Math.ceil(data.total / limit) : 1;
@@ -24,7 +27,7 @@ const AllProducts = () => {
             <div className='bg-base-200'>
                 <Container>
                     <div className=' py-3.5'>
-                        <h1 className="font-bold text-2xl md:text-3xl uppercase italic mb-3 text-center">
+                        <h1 className="font-bold text-2xl md:text-3xl uppercase italic mb-3 text-center text-[#FBD536]">
                             Explore Daily Essentials at Your Fingertips
                         </h1>
                         <p className="md:w-3/4 mx-auto mb-3 text-center text-sm text-gray-600">

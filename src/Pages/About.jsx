@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Container from '../Component/Shared Comonent/Container/Container';
 
@@ -18,6 +18,11 @@ const fadeInRight = {
 };
 
 const About = () => {
+
+  useEffect(() => {
+      document.title = `${import.meta.env.VITE_site_name} | About Us`;
+    }, []);
+
   return (
     <div className="bg-[#F9EDE1] text-gray-800 min-h-screen py-10">
       <Container>

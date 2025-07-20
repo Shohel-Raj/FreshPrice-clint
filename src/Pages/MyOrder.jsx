@@ -13,6 +13,7 @@ const MyOrdersTable = () => {
   const navigate =useNavigate();
 
   useEffect(() => {
+     document.title = `${import.meta.env.VITE_site_name} | My Orders`
     if (!user?.email) return;
 
     axiosSecure

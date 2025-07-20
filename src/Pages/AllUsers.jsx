@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaSearch, FaUserFriends } from 'react-icons/fa';
 import useAllUsers from '../hooks/useAllUsers';
 import UserTable from '../Component/Table/UserTable';
@@ -10,7 +10,9 @@ const AllUsers = () => {
   const limit = 10;
   const [search, setSearch] = useState('');
   const [searchInput, setSearchInput] = useState('');
-
+useEffect(() => {
+    document.title = `${import.meta.env.VITE_site_name} | All Users`;
+  }, []);
   const [selectedUser, setSelectedUser] = useState(null);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);

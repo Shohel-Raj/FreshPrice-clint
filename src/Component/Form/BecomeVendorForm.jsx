@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import useAuth from '../../hooks/useAuth'
@@ -7,6 +7,9 @@ import useVendorApplied from '../../hooks/useVendorApplied'
 const BecomeVendorForm = () => {
   const { user } = useAuth()
   const { applyAsVendor } = useVendorApplied();
+  useEffect(() => {
+    document.title = `${import.meta.env.VITE_site_name} | Become vendor`;
+  }, []);
 
   const {
     register,

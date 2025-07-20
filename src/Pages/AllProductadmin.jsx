@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { TbFidgetSpinner } from 'react-icons/tb';  // Spinner icon
@@ -12,6 +12,9 @@ const AllProductAdmin = () => {
   const [statusFilter, setStatusFilter] = useState('');
   const [page, setPage] = useState(1);
   const limit = 10;
+  useEffect(() => {
+      document.title = `${import.meta.env.VITE_site_name} | All Product`;
+    }, []);
 
   // For reject modal & feedback
   const [showRejectModal, setShowRejectModal] = useState(false);

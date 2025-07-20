@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Container from '../Component/Shared Comonent/Container/Container';
 import SeparateSection from '../Component/Shared Comonent/Seperate section/Seperatesection';
 import ProductDetailsCard from '../Component/Shared Comonent/ProductCard/ProductDetailsCard';
@@ -11,6 +11,11 @@ import PriceComparisonChart from '../Component/PriceComparisonChart';
 
 const ProductDetails = () => {
   const { productId } = useParams();
+
+
+  useEffect(() => {
+    document.title = `${import.meta.env.VITE_site_name} | Product Details`;
+  }, []);
     //   console.log(id);
 const { data: product, isLoading } = useQuery({
     queryKey: ['product', productId],

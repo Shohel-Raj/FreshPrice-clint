@@ -5,12 +5,12 @@ import { Link } from 'react-router';
 const HeroBanner = () => {
   return (
     <div
-      className="hero min-h-[65vh] md:min-h-[75vh] rounded-xl overflow-hidden"
+      className="hero min-h-[65vh] md:min-h-[75vh]  overflow-hidden"
       style={{
         backgroundImage: "url('/freshPrice_Banner.jpg')",
       }}
     >
-      <div className="hero-overlay bg-opacity-60 rounded-xl"></div>
+      <div className="hero-overlay bg-opacity-60 "></div>
 
       <motion.div
         className="hero-content text-neutral-content text-center"

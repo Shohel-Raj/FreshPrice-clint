@@ -20,16 +20,15 @@ import {
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import { imageUpload } from '../../api/utils'
 import useAuth from '../../hooks/useAuth'
-import useVendorApplied from '../../hooks/useVendorApplied'
 import LoadingSpinner from '../Shared Comonent/LoadingSpinner/LoadingSpinner'
+import useVendorInfo from '../../hooks/useVendorInfo'
 
 const AddProduct = () => {
   const [loading, setLoading] = useState(false)
   const [selectedDate, setSelectedDate] = useState(new Date())
   const axiosSecure = useAxiosSecure()
   const { user } = useAuth()
-  const { vendor, isVendorLoading } = useVendorApplied()
-  console.log(vendor);
+  const { vendorInfo, isVendorInfoLoading } = useVendorInfo();
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -38,15 +37,14 @@ const handleSubmit = async (e) => {
   const form = e.target;
   const itemName = form.itemName.value.trim();
   // Get marketDescription from vendor object, NOT from form input
-  const marketDescription = vendor?.marketDescription || '';
+  const marketDescription = vendorInfo?.marketDescription || '';
   const itemDescription = form.itemDescription.value.trim();
   const unitPrice = parseFloat(form.unitPrice.value);
   const imageFile = form.image.files[0];
 
-  console.log({ itemName, marketDescription, unitPrice, imageFile, vendor });
 
   // Validate inputs
-  if (!itemName || !vendor?.shopName || !marketDescription || isNaN(unitPrice) || unitPrice <= 0 || !imageFile) {
+  if (!itemName || !vendorInfo?.shopName || !marketDescription || isNaN(unitPrice) || unitPrice <= 0 || !imageFile) {
     toast.error('Please fill in all required fields');
     setLoading(false);
     return;
@@ -59,7 +57,7 @@ const handleSubmit = async (e) => {
       vendorEmail: user?.email,
       vendorName: user?.displayName || '',
       itemName,
-      marketName: vendor?.shopName,
+      marketName: vendorInfo?.shopName,
       marketDescription,
       itemDescription,
       status: 'pending',
@@ -98,7 +96,7 @@ const handleSubmit = async (e) => {
     { icon: MdVerifiedUser, className: 'bottom-24 right-20', color: 'text-yellow-300', delay: 11 },
   ]
 
-  if (isVendorLoading) {
+  if (isVendorInfoLoading) {
     return <LoadingSpinner/>
   }
 
@@ -138,7 +136,7 @@ const handleSubmit = async (e) => {
             <input
               type='text'
               name='marketName'
-              value={vendor?.shopName || ''}
+              value={vendorInfo?.shopName || ''}
               readOnly
               className='w-full px-3 py-2 border rounded-md bg-gray-200 text-gray-900 focus:outline-[#FBD536]  border-gray-300 cursor-not-allowed'
             />
@@ -149,7 +147,7 @@ const handleSubmit = async (e) => {
             <label className='block mb-2 text-sm font-medium'>Market Description</label>
             <textarea
               name='marketDescription'
-              value={vendor?.marketDescription || ''}
+              value={vendorInfo?.marketDescription || ''}
               placeholder='Location, establishment year, details...'
               rows='3'
               readOnly

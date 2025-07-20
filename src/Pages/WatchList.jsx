@@ -16,6 +16,9 @@ const WatchList = () => {
     const [watchlist, setWatchlist] = useState([]);
     const [selectedProductId, setSelectedProductId] = useState(null);
      const navigate =useNavigate();
+     useEffect(() => {
+    document.title = `${import.meta.env.VITE_site_name} | WatchList`;
+  }, []);
     
     // Fetch user's watchlist
     useEffect(() => {

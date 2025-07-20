@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import usePaginatedVendors from '../hooks/usePaginatedVendors';
 import UpdateVendorStatusModal from '../Component/Shared Comonent/Modals/UpdateVendorStatusModal';
@@ -14,6 +14,9 @@ const AllVendorsPaginated = () => {
   const [statusFilter, setStatusFilter] = useState('all');
   const [selectedVendor, setSelectedVendor] = useState(null);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  useEffect(() => {
+      document.title = `${import.meta.env.VITE_site_name} | Vendor`;
+    }, []);
 
   const { data, isLoading, isFetching, refetch } = usePaginatedVendors(page, limit, statusFilter);
   const { vendors = [], totalPages = 1 } = data || {};

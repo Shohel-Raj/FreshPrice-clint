@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../hooks/useAxiosSecure';
@@ -9,6 +9,9 @@ const AllOrders = () => {
   const [limit, setLimit] = useState(10);
   const [status, setStatus] = useState('');
   const axiosSecure = useAxiosSecure();
+  useEffect(() => {
+      document.title = `${import.meta.env.VITE_site_name} | All Order`;
+    }, []);
 
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ['orders', page, limit, status],
