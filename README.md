@@ -132,3 +132,26 @@ Below is a list of all major NPM packages used in the project, categorized by th
 |---------|-------------|
 | `react-slick` | React wrapper for slick-carousel |
 | `slick-carousel` | Carousel styling dependency |
+
+
+## 📁 Environment Variables
+
+Create a `.env.local` file at the root with the following:
+
+```env
+# === Frontend Environment Variables ===
+VITE_API_URL=http://localhost:5000
+
+# Firebase Configuration
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_firebase_app_id
+
+# Stripe Public Key
+VITE_STRIPE_PK=your_stripe_publishable_key
+```
+
+---
