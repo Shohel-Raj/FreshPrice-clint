@@ -16,7 +16,7 @@ const Home = () => {
     const data = useLoaderData()
     useEffect(() => {
          document.title = `${import.meta.env.VITE_site_name} | Home`
-        fetch('http://localhost:3000/grouped-by-market')
+        fetch('https://fresh-price-bice.vercel.app/grouped-by-market')
             .then(res => res.json())
             .then(data => console.log(data))
     }, [])

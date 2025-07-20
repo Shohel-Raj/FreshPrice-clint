@@ -8,7 +8,6 @@ const AllProductCard = ({ product }) => {
   const { user } = useAuth();
 
   const latestPrice = product?.prices?.[product.prices.length - 1];
-console.log(product);
   const handleViewDetails = () => {
     if (!user) {
       navigate('/login');

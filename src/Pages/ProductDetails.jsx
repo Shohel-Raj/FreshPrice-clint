@@ -16,7 +16,6 @@ const ProductDetails = () => {
   useEffect(() => {
     document.title = `${import.meta.env.VITE_site_name} | Product Details`;
   }, []);
-    //   console.log(id);
 const { data: product, isLoading } = useQuery({
     queryKey: ['product', productId],
     queryFn: async () => {

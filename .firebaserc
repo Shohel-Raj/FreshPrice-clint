@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "plant-care-tracker-4cf37",
+    "yes": "price-tracker-local"
+  },
+  "targets": {},
+  "etags": {}
+}

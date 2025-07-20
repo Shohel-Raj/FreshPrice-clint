@@ -17,7 +17,6 @@ const Navbar = () => {
         setIsMenuOpen(false);
       })
       .catch((error) => {
-        console.log(error);
       });
   };
 
@@ -42,7 +41,7 @@ const Navbar = () => {
           }
           onClick={() => setIsMenuOpen(false)}
         >
-          allproduct
+          all product
         </NavLink>
       </li>
       <li>

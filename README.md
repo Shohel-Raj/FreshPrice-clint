@@ -1,12 +1,81 @@
-# React + Vite
+# 🛒 FreshPrice - Local Market Price Tracker 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FreshPrice is a full-stack web application that enables users to explore, compare, and purchase fresh produce directly from local markets in Bangladesh. Built using React 19, Tailwind CSS, Firebase, MongoDB, Stripe, and JWT-based authentication, the app supports role-based dashboards for Admin, Vendors, and Users.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## Expanding the ESLint configuration
+🌐 [Fresh Price](https://price-tracker-local.web.app/)  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+---
+
+## 🧰 Tech Stack
+
+- **Frontend:** React 19, Tailwind CSS, DaisyUI, Framer Motion, Recharts, React Router, React Hook Form
+- **Backend:** Node.js, Express.js, MongoDB, JWT Auth, Stripe Payment
+- **Auth:** Firebase Auth, Google Login, JWT (localStorage-based)
+- **UI Libraries:** Heroicons, Lucide, Headless UI, React Toastify, React Icons
+- **Tools:** Axios, React Query, Vite, React Spinners
+
+---
+
+## ✨ Features
+
+### ✅ Public Pages
+- **Home Page**
+  - Navbar with dynamic auth-based buttons
+  - Animated Banner section (Framer Motion)
+  - Product Section showing latest approved products (limit 6)
+  - Advertisement Carousel (dynamic from DB)
+  - Two additional custom animated sections
+  - Footer with contact info & social links
+
+- **All Products Page**
+  - View all approved products
+  - Filters: By date or date range
+  - Sorting: Price low-to-high & high-to-low
+  - Backend-based filtering & pagination
+
+### 🔐 Authentication & Authorization
+- Firebase Auth with JWT (localStorage)
+- Social login (Google) — default role: user
+- Role-based access control for Admin, Vendor, and User
+- PrivateRoute implementation for protected views
+
+---
+
+## 📄 Product Details Page (Private)
+- Market name, image, date, and item list with prices
+- Vendor info and user reviews
+- ⭐ Add to Watchlist (disabled for Admin/Vendor)
+- 🛒 Buy Product → Stripe Payment → Order save
+- 📊 Price comparison chart using Recharts
+- 💬 User review system with star rating and feedback
+
+---
+
+## 👤 User Dashboard
+- 📈 Price Trends (visualized via Recharts)
+- 🧾 Watchlist management (add/remove with modals)
+- 🛍️ Order list with “View Details” button
+
+---
+
+## 🧑‍🌾 Vendor Dashboard
+- 📝 Add Product form with full validation and multiple prices
+- 📄 My Products table: update, delete, see status (pending/approved/rejected)
+- ✉️ Rejection feedback visible to vendor
+- 📢 Add & Manage Advertisements with update/delete modals
+
+---
+
+## 🛠️ Admin Dashboard
+- 👥 All Users: role update + backend search (name/email)
+- 📋 All Products: approve/reject (with modal), update, delete
+- 📢 All Ads: view, update status, delete
+- 🛒 All Orders: view user purchases
+- 👥 All Vendor: Verified + reject vendor
+
+---

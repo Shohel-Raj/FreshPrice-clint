@@ -20,5 +20,4 @@ export const saveUserInDb = async user => {
     user
   )
 
-  console.log(data)
 }

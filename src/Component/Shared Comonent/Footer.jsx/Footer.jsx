@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPhoneAlt, FaEnvelope,  } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPhoneAlt, FaEnvelope, FaGithubSquare,  } from 'react-icons/fa';
 import Container from '../Container/Container';
 import MainLogo from '../MainLogo/MainLogo';
 
@@ -42,9 +42,9 @@ const Footer = () => {
                     <div>
                         <h3 className="font-bold text-2xl mb-2">Follow Us</h3>
                         <div className="flex gap-4  text-xl">
-                            <a className='hover:text-amber-400 ' href="https://www.instagram.com/" target='_blank'><FaInstagram size={25} className='hover:scale-125' /></a>
-                            <a className='hover:text-amber-400 ' href="https://www.facebook.com/" target='_blank' ><FaFacebookF size={25} className='hover:scale-125' /> </a>
-                            <a className='hover:text-amber-400 ' href="https://www.x.com/" target='_blank' ><FaLinkedinIn size={25} className='hover:scale-125' /></a>
+                            <a className='hover:text-amber-400 ' href="https://facebook.com/mohammedshohel.bd" target='_blank' ><FaFacebookF size={25} className='hover:scale-125' /> </a>
+                            <a className='hover:text-amber-400 ' href="https://www.linkedin.com/in/mohammedshohel87" target='_blank' ><FaLinkedinIn size={25} className='hover:scale-125' /></a>
+                            <a className='hover:text-amber-400 ' href="https://github.com/Shohel-Raj" target='_blank' ><FaGithubSquare size={25} className='hover:scale-125' /></a>
 
                         </div>
                     </div>

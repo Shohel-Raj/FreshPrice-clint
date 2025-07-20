@@ -27,7 +27,6 @@ const MyAdds = () => {
   const handleDelete = () => {
     deleteAd.mutate(selectedAd._id);
   };
-console.log(ads);
   if (isLoading) return <LoadingSpinner/>;
 if (ads.length === 0) {
     return (

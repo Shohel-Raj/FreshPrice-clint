@@ -28,6 +28,7 @@ import AllProductadmin from "../Pages/AllProductadmin";
 import Payment from "../Pages/Payment";
 import AllVendor from "../Pages/AllVendor";
 import ErrorPage from "../Pages/Error";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -87,9 +88,14 @@ const router = createBrowserRouter([
       },
       {
         path:'admin-home',
-        element:<PrivateRoute>
+        element:
+        
+        <AdminRoute>
+         <PrivateRoute>
           <Statistics/>
-        </PrivateRoute>
+        </PrivateRoute> 
+        </AdminRoute>
+        
       },
       {
         path:'vendor-home',
