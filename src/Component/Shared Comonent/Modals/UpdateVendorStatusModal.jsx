@@ -6,10 +6,13 @@ const UpdateVendorStatusModal = ({ vendor, onClose, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const [status, setStatus] = useState(vendor.vendorStatus);
 
+  console.log(vendor.email);
+
   const handleUpdate = async () => {
     try {
       const res = await axiosSecure.patch(`/admin/vendor/status/${vendor._id}`, {
         status,
+        email:vendor.email
       });
       toast.success(res.data.message || 'Status updated');
       refetch();

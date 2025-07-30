@@ -5,12 +5,12 @@ import { axiosSecure } from '../../../hooks/useAxiosSecure';
 // import { axiosSecure } from '../hooks/useAxiosSecure';
 
 const UpdateUserModal = ({ user, onClose, refetch }) => {
-  const [role, setRole] = useState(user.role);
+  const [role, setRole] = useState('');
 
   const handleUpdate = async () => {
     try {
       await axiosSecure.patch(`/users/${user._id}`, { role });
-      toast.success('User role updated successfully!');
+      toast.success('User status updated successfully!');
       refetch();
       onClose();
     } catch (err) {
@@ -29,15 +29,15 @@ const UpdateUserModal = ({ user, onClose, refetch }) => {
         <p className="mb-2"><strong>Name:</strong> {user.name}</p>
         <p className="mb-4"><strong>Email:</strong> {user.email}</p>
 
-        <label className="block mb-2 font-medium">Select Role:</label>
+        <label className="block mb-2 font-medium">Select Status:</label>
         <select
           className="w-full border rounded p-2 mb-4"
           value={role}
           onChange={(e) => setRole(e.target.value)}
         >
-          <option value="buyer">User</option>
-          <option value="vendor">Vendor</option>
-          <option value="admin">Admin</option>
+          <option value="Verified">Verified</option>
+          <option value="not-verified">not-verified</option>
+          {/* <option value="admin">Admin</option> */}
         </select>
 
         <div className="flex justify-end gap-3">
