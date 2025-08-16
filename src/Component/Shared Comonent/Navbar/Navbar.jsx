@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AnimatePresence, motion } from 'framer-motion';
 import useAuth from '../../../hooks/useAuth';
 import MainLogo from '../MainLogo/MainLogo';
 import Container from '../Container/Container';
-import { LayoutDashboard } from 'lucide-react';
+import { LayoutDashboard, Moon, Sun } from 'lucide-react';
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  // Apply theme to <html>
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === "light" ? "dark" : "light"));
+  };
 
   const handleLogout = () => {
     logOut()
@@ -16,8 +31,7 @@ const Navbar = () => {
         localStorage.removeItem('auth-token');
         setIsMenuOpen(false);
       })
-      .catch((error) => {
-      });
+      .catch((error) => {});
   };
 
   const links = (
@@ -26,7 +40,9 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? 'font-bold border-b-2 uppercase' : 'uppercase'
+            isActive
+              ? 'font-bold border-b-2 uppercase dark:text-yellow-400'
+              : 'uppercase hover:text-yellow-500 dark:hover:text-yellow-400'
           }
           onClick={() => setIsMenuOpen(false)}
         >
@@ -37,7 +53,9 @@ const Navbar = () => {
         <NavLink
           to="/allproduct"
           className={({ isActive }) =>
-            isActive ? 'font-bold border-b-2 uppercase' : 'uppercase'
+            isActive
+              ? 'font-bold border-b-2 uppercase dark:text-yellow-400'
+              : 'uppercase hover:text-yellow-500 dark:hover:text-yellow-400'
           }
           onClick={() => setIsMenuOpen(false)}
         >
@@ -48,7 +66,9 @@ const Navbar = () => {
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            isActive ? 'font-bold border-b-2 uppercase' : 'uppercase'
+            isActive
+              ? 'font-bold border-b-2 uppercase dark:text-yellow-400'
+              : 'uppercase hover:text-yellow-500 dark:hover:text-yellow-400'
           }
           onClick={() => setIsMenuOpen(false)}
         >
@@ -62,17 +82,16 @@ const Navbar = () => {
     <div className='flex gap-1 flex-col md:flex-row'>
       <Link
         to="/dashboard"
-        className="btn bg-[#FBD536]  hover:bg-white w-full md:w-auto"
+        className="btn bg-[#FBD536] hover:bg-white dark:hover:bg-gray-700 w-full md:w-auto text-black dark:text-white"
         onClick={() => setIsMenuOpen(false)}
       >
         <LayoutDashboard/>
         <p className='uppercase'>dashboard</p>
-        
       </Link>
 
       <button
         onClick={handleLogout}
-        className="btn bg-[#FBD536] text-black hover:bg-white w-full md:w-auto"
+        className="btn bg-[#FBD536] hover:bg-white dark:hover:bg-gray-700 w-full md:w-auto text-black dark:text-white"
       >
         Logout
       </button>
@@ -81,14 +100,14 @@ const Navbar = () => {
     <div className='flex flex-col md:flex-row gap-2'>
       <Link
         to="/login"
-        className="btn bg-[#FBD536] text-black hover:bg-white w-full md:w-auto"
+        className="btn bg-[#FBD536] hover:bg-white dark:hover:bg-gray-700 w-full md:w-auto text-black dark:text-white"
         onClick={() => setIsMenuOpen(false)}
       >
         Login
       </Link>
       <Link
         to="/signup"
-        className="btn bg-[#FBD536] text-black hover:bg-white w-full md:w-auto"
+        className="btn bg-[#FBD536] hover:bg-white dark:hover:bg-gray-700 w-full md:w-auto text-black dark:text-white"
         onClick={() => setIsMenuOpen(false)}
       >
         Sign-up
@@ -98,7 +117,8 @@ const Navbar = () => {
 
   return (
     <Container>
-      <div className="navbar mx-0 relative">
+      <div className="navbar mx-0 relative bg-white dark:bg-base-200 text-black dark:text-white transition-colors">
+        
         {/* Left */}
         <div className="navbar-start">
           <MainLogo />
@@ -111,6 +131,14 @@ const Navbar = () => {
 
         {/* Right */}
         <div className="navbar-end gap-2">
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="btn btn-ghost btn-circle"
+          >
+            {theme === "light" ? <Moon size={20}/> : <Sun size={20}/>}
+          </button>
+
           {/* Avatar */}
           {user && (
             <div className="avatar w-8 cursor-pointer">
@@ -138,12 +166,7 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
           </button>
 
@@ -160,11 +183,11 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 70, damping: 12 }}
-              className="fixed inset-0 z-50 bg-white dark:bg-base-200 flex flex-col justify-center items-center px-6 md:hidden"
+              className="fixed inset-0 z-50 bg-white dark:bg-base-200 text-black dark:text-white flex flex-col justify-center items-center px-6 md:hidden"
             >
-              {/* Close button - fixed in top-right */}
+              {/* Close button */}
               <button
-                className="absolute top-4 right-4 text-3xl font-bold text-gray-700 hover:text-red-500"
+                className="absolute top-4 right-4 text-3xl font-bold text-gray-700 dark:text-gray-200 hover:text-red-500"
                 onClick={() => setIsMenuOpen(false)}
               >
                 &times;
